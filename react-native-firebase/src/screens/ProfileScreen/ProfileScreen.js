@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
-import { auth, db } from '../../firebase/config'
+import { auth, db , firestore} from '../../firebase/config'
 
 export default function ProfileScreen(props) {
 
     const [messageText, setMessageText] = useState('')
     const [messages, setMessages] = useState([])
+    // const [timeStamp, setTimeStamp] = useState(null)
 
     const messageRef = db.collection('messages')
     const userID = props.extraData.id
@@ -35,12 +36,13 @@ export default function ProfileScreen(props) {
 
     const onAddButtonPress = () => {
         if (messageText && messageText.length > 0) {
-            // const timestamp = db.FieldValue.serverTimestamp();
+            const timestamp = firestore.FieldValue.serverTimestamp()
             const data = {
                 text: messageText,
                 authorID: userID,
-                // createdAt: timestamp,
+                createdAt: timestamp,
             };
+            console.log(data);
             messageRef
                 .add(data)
                 .then(_doc => {
@@ -59,15 +61,16 @@ export default function ProfileScreen(props) {
                 <Text style={styles.messageText}>
                     {index}. {item.text}
                 </Text>
+            
             </View>
         )
     }
 
     return (
         <View style={styles.container}>
-        <Text>{userID}</Text>
-        <Text>{userName}</Text>
-        <Text>{userEmail}</Text>
+        <Text>id:{userID}</Text>
+        <Text>name:{userName}</Text>
+        <Text>email:{userEmail}</Text>
             <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
