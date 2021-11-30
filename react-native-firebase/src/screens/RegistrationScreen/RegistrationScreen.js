@@ -16,7 +16,7 @@ export default function RegistrationScreen({navigation}) {
 
     const onRegisterPress = () => {
         if (password !== confirmPassword) {
-            alert("Passwords don't match.")
+            alert("Wrong password!")
             return
         }
         auth
@@ -33,7 +33,7 @@ export default function RegistrationScreen({navigation}) {
                     .doc(uid)
                     .set(data)
                     .then(() => {
-                        navigation.navigate('Home', {user: data})
+                        navigation.navigate('Profile', {user: data})
                     })
                     .catch((error) => {
                         alert(error)
