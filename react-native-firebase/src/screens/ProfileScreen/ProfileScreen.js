@@ -71,6 +71,7 @@ export default function ProfileScreen(props) {
         <Text>id:{userID}</Text>
         <Text>name:{userName}</Text>
         <Text>email:{userEmail}</Text>
+        
             <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
