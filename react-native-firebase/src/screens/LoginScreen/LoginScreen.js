@@ -11,6 +11,10 @@ export default function LoginScreen({navigation}) {
         navigation.navigate('Registration')
     }
 
+    const onFooterLinkPressTest = () => {
+        navigation.navigate('Test')
+    }
+
     const onLoginPress = () => {
     }
 
@@ -49,6 +53,9 @@ export default function LoginScreen({navigation}) {
                 </TouchableOpacity>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
+                </View>
+                <View style={styles.footerView}>
+                    <Text style={styles.footerText}>Try test screen? <Text onPress={onFooterLinkPressTest} style={styles.footerLink}>Test up</Text></Text>
                 </View>
             </KeyboardAwareScrollView>
         </View>
